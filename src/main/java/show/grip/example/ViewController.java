@@ -91,7 +91,7 @@ public class ViewController {
                                 "start=" + start.format(date) + "&" +
                                 "end=" + end.format(date);
 
-        String reservationId = "";
+        String reservationId = null;
 
         HttpGet reservation = new HttpGet(REST + "/svc/v2/reservations?" + reservationUri);
         reservation.setHeader("Content-Type", "application/json;charset=UTF-8");
