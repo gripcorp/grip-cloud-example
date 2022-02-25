@@ -124,6 +124,8 @@ public class ViewController {
         model.addAttribute("sessionKey", sessionKey);
         model.addAttribute("reservationId", reservationId);
 
+        model.addAttribute("ts", String.valueOf(System.currentTimeMillis() / 1000));
+
         return "index";
     }
 
