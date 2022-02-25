@@ -24,8 +24,8 @@ public class UserInfo {
         user.put("nickname", nickname);
         user.put("host", host);
         user.put("timestamp", System.currentTimeMillis()); // Require
-        // userInfo.setGender(....)
-        // userInfo.setAgeRange(....)
+        // userInfo.setGender("M")
+        // userInfo.setAgeRange("00")
 
         // 사용하지 않는 값에 대해서는 빼줘야한다. 그렇지 않으면 오류.
         if (gender != null && gender.trim().length() == 0) {

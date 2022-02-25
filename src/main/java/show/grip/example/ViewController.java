@@ -39,9 +39,9 @@ public class ViewController {
         * 파트너센터 > 상단 바 > 유저 프로필 클릭 > 드롭다운 메뉴에서 API 클릭
         * Service ID, Secret Key, User Code에 대해서는 파트너 센터의 위 메뉴에서 확인 가능합니다.
         * */
-        String serviceId = null;
-        String secretKey = null;
-        String userCode = null;
+        String serviceId = "";
+        String secretKey = "";
+        String userCode = "";
 
         if (serviceId == null || serviceId == "") {
             throw new RuntimeException("Service ID를 기재해주세요.");
@@ -91,7 +91,7 @@ public class ViewController {
                                 "start=" + start.format(date) + "&" +
                                 "end=" + end.format(date);
 
-        String reservationId = null;
+        String reservationId = "";
 
         HttpGet reservation = new HttpGet(REST + "/svc/v2/reservations?" + reservationUri);
         reservation.setHeader("Content-Type", "application/json;charset=UTF-8");
@@ -125,17 +125,6 @@ public class ViewController {
         model.addAttribute("reservationId", reservationId);
 
         return "index";
-    }
-
-    public GripErrorResponse convertExToGripError(String body) {
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            GripErrorResponse error = objectMapper.readValue(body, GripErrorResponse.class);
-
-            return error;
-        } catch (JsonProcessingException ex) {
-            return null;
-        }
     }
 
     public String strToSHA256(String text) {
