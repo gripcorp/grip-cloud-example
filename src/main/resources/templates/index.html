@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo</title>
+
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .player {
+      width: 300px;
+      height: 600px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div id="embed" class="player"></div>
+</div>
+
+<!-- Grip Mini -->
+<script th:src="'https://resource.grip.show/js/grip.mini.2.min.js?ts=' + ${ts}"></script>
+
+<!-- 그립미니 호출 예제 -->
+<script th:inline="javascript">
+  // 1. 그립미니를 사용하기 위한 기본정보를 입력받는다.
+  // Service Id: API 및 플레이어 전체적으로 사용하기 떄문에 호출 시 꼭 필요한 필수정보.
+  // Secret Key: Finger Print/Session 을 생성할 때 필요.
+  // Reservation/Content Id 혹은 User Code: 플레이어에서 실행할 영상을 찾기 위해 입력 받음. 주로 Reservation ID가 사용됨.
+
+  // 예제에서는 Reservation ID로 진행함.
+  let mini = null;
+
+  const service_id = [[${serviceId}]];
+  const reservation_id = [[${reservationId}]];
+
+  const session_key = [[${sessionKey}]];
+
+  async function initGripMini() {
+    // 3. 그립미니 호출을 통한 플레이어 생성
+    mini = GripMini({
+      parentId: "embed",
+      reservationId: reservation_id,
+      serviceId: service_id,
+      sessionKey: session_key
+    });
+  }
+
+  if (reservation_id === null) {
+    alert("파트너센터에서 오늘 날짜의 예약 및 방송을 만들어서 테스트해주세요.");
+  }
+  else {
+    initGripMini();
+  }
+</script>
+</body>
+</html>
